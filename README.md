@@ -1,3 +1,4 @@
 |user|task|label|
 |:------|:-----:|------:|
-|左寄せ|センタリング|右寄せ|
+|user_id|title|name|
+|email|content|
