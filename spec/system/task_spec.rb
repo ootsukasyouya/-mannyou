@@ -9,4 +9,6 @@ describe '新規作成機能' do
         expect(page).to have_content 'リュック買う'
       end
     end
+
+    
   end
