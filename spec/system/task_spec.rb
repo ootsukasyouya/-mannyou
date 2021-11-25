@@ -39,4 +39,17 @@ RSpec.describe 'タスク管理機能', type: :system do
        end
      end
   end
+  describe '並べ替え機能' do
+    context '終了期限でソートした場合' do
+      it '新しい日付が１番上に表示される' do
+        FactoryBot.create(:task, title: 'task')
+        FactoryBot.create(:second_task, title: 'task2')
+        FactoryBot.create(:third_task, title: 'task3')
+        visit tasks_path
+        click_on '終了期限でソートする'
+        task_list = all('tbody tr')
+        expect(task_list[0]).to have_content '2020-12-01'
+      end
+    end
+  end
 end
