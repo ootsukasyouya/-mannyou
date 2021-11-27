@@ -26,6 +26,12 @@
     <%= form.date_field :deadline %>
   </div>
 
+  <div class="field">
+  <%= form.label :status %>
+  <%= form.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
