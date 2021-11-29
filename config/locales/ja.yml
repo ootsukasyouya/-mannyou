@@ -1,4 +1,10 @@
 ja:
+  enums:
+    task:
+      status:
+        未着手: '未着手'
+        着手中: '着手中'
+        完了: '完了'
   activerecord:
     errors:
       messages:

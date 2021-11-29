@@ -16,6 +16,8 @@
       <tr>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
+        <td><%= task.deadline %></td>
+        <td><%= task.status_i18n %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -25,5 +27,16 @@
 </table>
 
 <br>
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+<br>
+<div class="search-form">
+  <%= form_with url:tasks_path,method: :get, local: true do |search| %>
+      <%=search.label :title %>
+      <%= search.text_field :title %>
+      <%=search.label :status %>
+      <%=search.select :status,["","未着手","着手中","完了"] %>
+      <%= search.submit "検索" %>
+  <% end %>
+</div>
 
 <%= link_to 'New Task', new_task_path %>
