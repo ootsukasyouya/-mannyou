@@ -2,9 +2,9 @@ ja:
   enums:
     task:
       status:
-        yet_start: '未着手'
-        start: '着手中'
-        completion: '完了'
+        未着手: '未着手'
+        着手中: '着手中'
+        完了: '完了'
   activerecord:
     errors:
       messages:

@@ -8,16 +8,19 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
+    @tasks = Task.all
     if params[:sort_expired]
       @tasks = Task.order(deadline: :desc)
     else
       @tasks = Task.order(created_at: :desc)
     end
 
-    if params[:keyword]
-        @tasks = Task.search_title(params[:keyword])
-    else
-        @tasks = Task.order(created_at: :desc)
+    if params[:title].present? && params[:status].present?
+     @tasks = @tasks.search_title(params[:title]).search_status(params[:status])
+    elsif params[:title].present?
+      @tasks = @tasks.search_title(params[:title])
+    elsif params[:status].present?
+      @tasks = @tasks.search_status(params[:status])
     end
   end
 

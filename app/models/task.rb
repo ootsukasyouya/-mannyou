@@ -4,9 +4,10 @@ class Task < ApplicationRecord
   validates :deadline, presence: true
   validates :status, presence: true
   enum status: {
-    yet_start:0,start:1,completion:2
+    未着手:0,着手中:1,完了:2
   },  _prefix: true
-  scope :search_title, -> (keyword){where("title like?", "%#{keyword}%")}
+  scope :search_title,->(title_search){where("title LIKE?","%#{title_search}%")}
+  scope :search_status,->(status_search){where(status:"#{status_search}")}
   # def self.search(keyword)
   #   if keyword != nil
   #     where("title like?", "%#{keyword}%")

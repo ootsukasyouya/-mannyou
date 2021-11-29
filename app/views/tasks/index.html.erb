@@ -30,9 +30,12 @@
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 <br>
 <div class="search-form">
-  <%= form_with url: tasks_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword %>
-    <%= f.submit "検索" %>
+  <%= form_with url:tasks_path,method: :get, local: true do |search| %>
+      <%=search.label :title %>
+      <%= search.text_field :title %>
+      <%=search.label :status %>
+      <%=search.select :status,["","未着手","着手中","完了"] %>
+      <%= search.submit "検索" %>
   <% end %>
 </div>
 
