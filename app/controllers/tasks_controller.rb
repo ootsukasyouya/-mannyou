@@ -1,5 +1,10 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy  ]
+
+  # def search
+  #   @tasks = Task.search(params[:keyword])
+  #   @keyword = params[:keyword]
+  # end
 
   # GET /tasks or /tasks.json
   def index
@@ -7,6 +12,12 @@ class TasksController < ApplicationController
       @tasks = Task.order(deadline: :desc)
     else
       @tasks = Task.order(created_at: :desc)
+    end
+
+    if params[:keyword]
+        @tasks = Task.search_title(params[:keyword])
+    else
+        @tasks = Task.order(created_at: :desc)
     end
   end
 
