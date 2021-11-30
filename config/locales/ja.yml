@@ -5,6 +5,10 @@ ja:
         未着手: '未着手'
         着手中: '着手中'
         完了: '完了'
+      priority:
+        高: '高'
+        中: '中'
+        低: '低'
   activerecord:
     errors:
       messages:
