@@ -13,7 +13,7 @@
 
     <tbody>
       <% @tasks.each do |task| %>
-        <tr>
+        <tr class= "tr_list">
           <td><%= task.title %></td>
           <td><%= task.content %></td>
           <td><%= task.deadline %></td>
@@ -27,23 +27,28 @@
     </tbody>
   </table>
 </div>
-<div class="bg-info clearfix">
-  <button type="button" class="btn btn-secondary float-left"><%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %></button>
-  <button type="button" class="btn btn-secondary float-right"><%= link_to "優先順位でソートする", tasks_path(sort_2: "true") %></button>
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true"), class: 'btn btn-default' %>
+<%= link_to "優先順位でソートする", tasks_path(sort_2: "true"), class: 'btn btn-default' %>
+
+
+<div class="search_form">
+  <%= form_with url:tasks_path,method: :get, local: true do |search| %>
+    <div class="form-group">
+      <%=search.label :タイトル %>
+      <%= search.text_field :title,  class: "form-control" %>
+    </div>
+    <div class="form-group">
+       <%=search.label :進行状況 %>
+       <%=search.select :status,["","未着手","着手中","完了"], {id: "exampleFormControlSelect1"}, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%=search.label :優先順位 %>
+      <%=search.select :priority,["","高","中","低"],  {id: "exampleFormControlSelect2"}, {class: "form-control"}  %>
+    </div>
+    <%= search.submit "検索" %>
+  <% end %>
 </div>
 
- <nav class=""navbar navbar-light bg-light"">
-    <div class="search_form">
-  <%= form_with url:tasks_path,method: :get, local: true do |search| %>
-      <%=search.label :title %>
-      <%= search.text_field :title %>
-      <%=search.label :status %>
-      <%=search.select :status,["","未着手","着手中","完了"] %>
-      <%=search.select :priority,["","高","中","低"] %>
-      <%= search.submit "検索" %>
-  <% end %>
-  </div>
+<%= link_to '新しいタスクの作成', new_task_path , class: 'btn btn-default'%>
 
-<%= link_to '新しいタスクの作成', new_task_path %>
-</nav>
 <%= paginate @tasks, theme: 'twitter-bootstrap-4' %>

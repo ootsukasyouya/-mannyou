@@ -80,7 +80,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         FactoryBot.create(:third_task, title: 'task3')
         visit tasks_path
         click_on '終了期限でソートする'
-        task_list = all('tbody tr')
+        task_list = all('.tr_list')
         expect(task_list[0]).to have_content '2020-12-01'
       end
     end
@@ -92,9 +92,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         click_on '優先順位でソートする'
         task_list = all('tbody tr')
-        expect(task_list[0]).to have_content '0'
-        expect(task_list[1]).to have_content '1'
-        expect(task_list[2]).to have_content '2'
+        expect(task_list[1]).to have_content '0'
+        expect(task_list[2]).to have_content '1'
+        expect(task_list[3]).to have_content '2'
       end
     end
   end
