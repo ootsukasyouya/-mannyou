@@ -7,6 +7,7 @@ gem 'rails-i18n'
 gem 'enum_help'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'bcrypt'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
