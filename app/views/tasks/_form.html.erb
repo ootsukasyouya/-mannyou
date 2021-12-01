@@ -31,6 +31,12 @@
   <%= form.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
   </div>
 
+  <div class="field">
+  <%= form.label :priority %>
+  <%= form.select :priority, Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]} %>
+  </div>
+
+
 
   <div class="actions">
     <%= form.submit %>
