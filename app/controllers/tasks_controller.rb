@@ -1,12 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy  ]
-
-  # def search
-  #   @tasks = Task.search(params[:keyword])
-  #   @keyword = params[:keyword]
-  # end
-
-  # GET /tasks or /tasks.json
+  
   def index
     @tasks = Task.all.includes(:task).order(created_at: :desc).page(params[:page])
     if params[:sort_expired]
